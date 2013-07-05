@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using EntityFrameworkExtraMile.Domain.Model;
+using EntityFrameworkExtraMile.Infrastructure.DataAccess;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using EntityFrameworkExtraMile.Filters;
@@ -264,7 +264,7 @@ namespace EntityFrameworkExtraMile.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (UsersContext db = new UsersContext())
+                using (HumanResourceContext db = new HumanResourceContext())
                 {
                     UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Check if user already exists

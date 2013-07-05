@@ -3,8 +3,8 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
+using EntityFrameworkExtraMile.Infrastructure.DataAccess;
 using WebMatrix.WebData;
-using EntityFrameworkExtraMile.Models;
 
 namespace EntityFrameworkExtraMile.Filters
 {
@@ -25,11 +25,11 @@ namespace EntityFrameworkExtraMile.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
+                Database.SetInitializer<HumanResourceContext>(null);
 
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new HumanResourceContext())
                     {
                         if (!context.Database.Exists())
                         {
@@ -38,7 +38,7 @@ namespace EntityFrameworkExtraMile.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "ID", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

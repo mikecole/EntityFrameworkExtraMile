@@ -183,11 +183,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Domain\Model\UserProfile.cs" />
+    <Compile Include="Domain\Model\Model.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DataAccess\Configuration\Initializer.cs" />
+    <Compile Include="Infrastructure\DataAccess\Configuration\Mappings.cs" />
+    <Compile Include="Infrastructure\DataAccess\HumanResourceContext.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
