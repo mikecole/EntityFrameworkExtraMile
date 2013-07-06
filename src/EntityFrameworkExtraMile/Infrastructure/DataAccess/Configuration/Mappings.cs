@@ -8,8 +8,9 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess.Configuration
         public EmployeeConfiguration()
         {
             HasKey(employee => employee.ID);
+            Property(employee => employee.Code).HasMaxLength(20).IsRequired();
             Property(employee => employee.FirstName).HasMaxLength(50).IsRequired();
-            Property(employee => employee.MiddleInitial).HasMaxLength(2).IsRequired();
+            Property(employee => employee.MiddleName).HasMaxLength(50);
             Property(employee => employee.LastName).HasMaxLength(50).IsRequired();
 
             HasRequired(employee => employee.Address);

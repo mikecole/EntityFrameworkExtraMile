@@ -9,13 +9,11 @@ using EntityFrameworkExtraMile.Domain.Model;
 using EntityFrameworkExtraMile.Infrastructure.DataAccess;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using EntityFrameworkExtraMile.Filters;
 using EntityFrameworkExtraMile.Models;
 
 namespace EntityFrameworkExtraMile.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //

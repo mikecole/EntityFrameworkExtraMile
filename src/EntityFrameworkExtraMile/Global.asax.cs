@@ -1,10 +1,7 @@
-﻿using System.Data.Entity;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using EntityFrameworkExtraMile.Infrastructure.DataAccess;
-using EntityFrameworkExtraMile.Infrastructure.DataAccess.Configuration;
 
 namespace EntityFrameworkExtraMile
 {
@@ -22,8 +19,6 @@ namespace EntityFrameworkExtraMile
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-
-            Database.SetInitializer<HumanResourceContext>(new HumanResourceInitializer());
         }
     }
 }

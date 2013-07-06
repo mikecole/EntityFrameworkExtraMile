@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EntityFrameworkExtraMile.Domain.Model.Employee>
+@{
+    ViewBag.Title = "Employees";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<table>
+    <thead>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Address</th>
+    </thead>
+    
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td>@employee.LastName</td>
+            <td>@employee.FirstName</td>
+            <td>@employee.MiddleName</td>
+            <td>
+                @employee.Address.AddressLine1<br />
+                @if (@employee.Address.AddressLine2 != null)
+                {
+                    @employee.Address.AddressLine2
+                }
+                @employee.Address.City, @employee.Address.State.Abbreviation @employee.Address.PostalCode
+            </td>
+        </tr>
+    }
+</table>

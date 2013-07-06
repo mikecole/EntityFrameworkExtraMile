@@ -16,8 +16,9 @@ namespace EntityFrameworkExtraMile.Domain.Model
 
     public class Employee : EntityBase
     {
+        public string Code { get; set; }
         public string FirstName { get; set; }
-        public string MiddleInitial { get; set; }
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
         public Genders Gender { get; set; }
         public virtual Address Address { get; set; }
