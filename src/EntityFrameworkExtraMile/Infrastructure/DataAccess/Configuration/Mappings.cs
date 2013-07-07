@@ -14,6 +14,7 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess.Configuration
             Property(employee => employee.LastName).HasMaxLength(50).IsRequired();
 
             HasRequired(employee => employee.Address);
+            HasMany(employee => employee.PayrollDeductions);
         }
     }
 
@@ -52,6 +53,17 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess.Configuration
             Property(department => department.Code).HasMaxLength(10).IsRequired();
 
             HasMany(department => department.Employees);
+        }
+    }
+
+    public class PayrollDeductionConfiguration : EntityTypeConfiguration<PayrollDeduction>
+    {
+        public PayrollDeductionConfiguration()
+        {
+            HasKey(deduction => deduction.ID);
+            Property(deduction => deduction.Name).HasMaxLength(50).IsRequired();
+
+            HasMany(deduction => deduction.Employees);
         }
     }
 

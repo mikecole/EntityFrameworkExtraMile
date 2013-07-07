@@ -15,6 +15,7 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<State> States { get; set; }
+        public DbSet<PayrollDeduction> PayrollDeductions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

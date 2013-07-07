@@ -25,6 +25,7 @@ namespace EntityFrameworkExtraMile.Domain.Model
         public DateTime DateOfBirth { get; set; }
         public DateTime HireDate { get; set; }
         public virtual Department Department { get; set; }
+        public virtual ICollection<PayrollDeduction> PayrollDeductions { get; set; } 
     }
 
     public class Address : EntityBase
@@ -72,6 +73,13 @@ namespace EntityFrameworkExtraMile.Domain.Model
         public string Code { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
+    }
+
+    public class PayrollDeduction : EntityBase
+    {
+        public string Name { get; set; }
+        public decimal Amount { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; } 
     }
 
     public class UserProfile : EntityBase
