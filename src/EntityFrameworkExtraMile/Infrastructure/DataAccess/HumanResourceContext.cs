@@ -1,4 +1,7 @@
+using System;
+using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using EntityFrameworkExtraMile.Domain.Model;
 using EntityFrameworkExtraMile.Infrastructure.DataAccess.Configuration;
 
@@ -30,5 +33,47 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess
             modelBuilder.Configurations.Add(new CompanyAssetConfiguration());
             modelBuilder.Configurations.Add(new PayrollDeductionConfiguration());
         }
+
+        #region hide
+        //public override int SaveChanges()
+        //{
+        //    return SaveChanges("System");
+        //}
+
+        //public int SaveChanges(string currentUserName)
+        //{
+        //    var now = DateTime.Now;
+        //    var changeSet = ChangeTracker.Entries<EntityBase>();
+
+        //    if (changeSet != null)
+        //    {
+        //        foreach (var item in changeSet)
+        //        {
+        //            switch (item.State)
+        //            {
+        //                case EntityState.Added:
+        //                    item.Entity.AddedBy = currentUserName;
+        //                    item.Entity.AddedDate = now;
+        //                    item.Entity.ModifiedBy = currentUserName;
+        //                    item.Entity.ModifiedDate = now;
+        //                    break;
+        //                case EntityState.Modified:
+        //                    item.Entity.ModifiedBy = currentUserName;
+        //                    item.Entity.ModifiedDate = now;
+        //                    break;
+        //            }
+        //        }
+        //    }
+
+        //    try
+        //    {
+        //        return base.SaveChanges();
+        //    }
+        //    catch (DbEntityValidationException ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+        #endregion
     }
 }

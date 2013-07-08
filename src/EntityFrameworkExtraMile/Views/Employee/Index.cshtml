@@ -16,6 +16,7 @@
         <th>Address</th>
         <th>Deductions</th>
         <th>Company Assets</th>
+        <th></th>
     </thead>
 
     @foreach (var employee in Model)
@@ -47,6 +48,9 @@
                         <li>@asset.Name</li>
                     }
                 </ul>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { ID = employee.ID })
             </td>
         </tr>
     }

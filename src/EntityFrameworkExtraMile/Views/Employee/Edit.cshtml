@@ -1,0 +1,31 @@
+﻿@model EntityFrameworkExtraMile.Domain.Model.Employee
+@{
+    ViewBag.Title = "Edit Employee " + Model.Code;
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.FirstName)
+                @Html.TextBoxFor(m => m.FirstName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MiddleName)
+                @Html.TextBoxFor(m => m.MiddleName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName)
+            </li>
+        </ol>
+        <button value="Submit">Save</button>
+    </fieldset>
+}

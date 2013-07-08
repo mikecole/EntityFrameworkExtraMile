@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace EntityFrameworkExtraMile.Domain.Model
 {
     public abstract class EntityBase
     {
         public int ID { get; set; }
+        #region hide
+        //public DateTime? ModifiedDate { get; set; }
+        //public DateTime? AddedDate { get; set; }
+        //[MaxLength(50)]
+        //public string ModifiedBy { get; set; }
+        //[MaxLength(50)]
+        //public string AddedBy { get; set; }
+        #endregion
     }
 
     public enum Genders
@@ -28,7 +35,7 @@ namespace EntityFrameworkExtraMile.Domain.Model
         public virtual Address Address { get; set; }
         public virtual Department Department { get; set; }
         public virtual ICollection<PayrollDeduction> PayrollDeductions { get; set; }
-        public virtual ICollection<CompanyAsset> CompanyAssets { get; set; } 
+        public virtual ICollection<CompanyAsset> CompanyAssets { get; set; }
     }
 
     #region hide
@@ -89,7 +96,7 @@ namespace EntityFrameworkExtraMile.Domain.Model
     public class Department : EntityBase
     {
         public Department(string code, string name)
-            :this()
+            : this()
         {
             Code = code;
             Name = name;
@@ -97,7 +104,7 @@ namespace EntityFrameworkExtraMile.Domain.Model
         private Department()
         {
         }
-        
+
         public string Name { get; set; }
         public string Code { get; set; }
 
@@ -109,14 +116,14 @@ namespace EntityFrameworkExtraMile.Domain.Model
         public string Name { get; set; }
         public decimal Amount { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; } 
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 
     public class CompanyAsset : EntityBase
     {
         public string Name { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; } 
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 
     public class UserProfile : EntityBase
