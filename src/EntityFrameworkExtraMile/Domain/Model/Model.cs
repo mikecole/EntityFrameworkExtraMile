@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EntityFrameworkExtraMile.Domain.Model
 {
@@ -29,6 +30,32 @@ namespace EntityFrameworkExtraMile.Domain.Model
         public virtual ICollection<PayrollDeduction> PayrollDeductions { get; set; }
         public virtual ICollection<CompanyAsset> CompanyAssets { get; set; } 
     }
+
+    #region hide
+    //public class Employee2 : EntityBase
+    //{
+    //    [Required]
+    //    [MaxLength(20)]
+    //    public string Code { get; set; }
+    //    [Required]
+    //    [MaxLength(50)]
+    //    public string FirstName { get; set; }
+    //    [MaxLength(20)]
+    //    public string MiddleName { get; set; }
+    //    [Required]
+    //    [MaxLength(50)]
+    //    public string LastName { get; set; }
+    //    public Genders Gender { get; set; }
+    //    public DateTime DateOfBirth { get; set; }
+    //    public DateTime HireDate { get; set; }
+
+    //    [Required]
+    //    public virtual Address Address { get; set; }
+    //    public virtual Department Department { get; set; }
+    //    public virtual ICollection<PayrollDeduction> PayrollDeductions { get; set; }
+    //    public virtual ICollection<CompanyAsset> CompanyAssets { get; set; }
+    //}
+    #endregion
 
     public class Address : EntityBase
     {
