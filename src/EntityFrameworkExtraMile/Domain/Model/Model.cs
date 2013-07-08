@@ -21,11 +21,13 @@ namespace EntityFrameworkExtraMile.Domain.Model
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public Genders Gender { get; set; }
-        public virtual Address Address { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime HireDate { get; set; }
+
+        public virtual Address Address { get; set; }
         public virtual Department Department { get; set; }
-        public virtual ICollection<PayrollDeduction> PayrollDeductions { get; set; } 
+        public virtual ICollection<PayrollDeduction> PayrollDeductions { get; set; }
+        public virtual ICollection<CompanyAsset> CompanyAssets { get; set; } 
     }
 
     public class Address : EntityBase
@@ -33,9 +35,9 @@ namespace EntityFrameworkExtraMile.Domain.Model
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
         public string City { get; set; }
-        public virtual State State { get; set; }
         public string PostalCode { get; set; }
 
+        public virtual State State { get; set; }
         public virtual ICollection<Employee> AddressFor { get; set; }
     }
 
@@ -79,6 +81,14 @@ namespace EntityFrameworkExtraMile.Domain.Model
     {
         public string Name { get; set; }
         public decimal Amount { get; set; }
+
+        public virtual ICollection<Employee> Employees { get; set; } 
+    }
+
+    public class CompanyAsset : EntityBase
+    {
+        public string Name { get; set; }
+
         public virtual ICollection<Employee> Employees { get; set; } 
     }
 

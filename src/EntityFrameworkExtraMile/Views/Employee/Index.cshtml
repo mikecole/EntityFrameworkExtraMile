@@ -14,8 +14,10 @@
         <th>First Name</th>
         <th>Middle Name</th>
         <th>Address</th>
+        <th>Deductions</th>
+        <th>Company Assets</th>
     </thead>
-    
+
     @foreach (var employee in Model)
     {
         <tr>
@@ -29,6 +31,22 @@
                     @employee.Address.AddressLine2
                 }
                 @employee.Address.City, @employee.Address.State.Abbreviation @employee.Address.PostalCode
+            </td>
+            <td>
+                <ul>
+                    @foreach (var deduction in employee.PayrollDeductions)
+                    {
+                        <li>@deduction.Name - @deduction.Amount</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    @foreach (var asset in employee.CompanyAssets)
+                    {
+                        <li>@asset.Name</li>
+                    }
+                </ul>
             </td>
         </tr>
     }

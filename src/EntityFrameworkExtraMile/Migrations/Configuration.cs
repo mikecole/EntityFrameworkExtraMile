@@ -11,7 +11,7 @@ namespace EntityFrameworkExtraMile.Migrations
     internal sealed class Configuration : DbMigrationsConfiguration<HumanResourceContext>
     {
         private Random _random = new Random();
-        
+
         public Configuration()
         {
             AutomaticMigrationDataLossAllowed = true;
@@ -28,6 +28,7 @@ namespace EntityFrameworkExtraMile.Migrations
             SeedState(context, new[] { "AL", "Alabama" }, new[] { "AK", "Alaska" }, new[] { "AZ", "Arizona" }, new[] { "AR", "Arkansas" }, new[] { "CA", "California" }, new[] { "CO", "Colorado" }, new[] { "CT", "Connecticut" }, new[] { "DE", "Delaware" }, new[] { "DC", "District of Columbia" }, new[] { "FL", "Florida" }, new[] { "GA", "Georgia" }, new[] { "HI", "Hawaii" }, new[] { "ID", "Idaho" }, new[] { "IL", "Illinois" }, new[] { "IN", "Indiana" }, new[] { "IA", "Iowa" }, new[] { "KS", "Kansas" }, new[] { "KY", "Kentucky" }, new[] { "LA", "Louisiana" }, new[] { "ME", "Maine" }, new[] { "MD", "Maryland" }, new[] { "MA", "Massachusetts" }, new[] { "MI", "Michigan" }, new[] { "MN", "Minnesota" }, new[] { "MS", "Mississippi" }, new[] { "MO", "Missouri" }, new[] { "MT", "Montana" }, new[] { "NE", "Nebraska" }, new[] { "NV", "Nevada" }, new[] { "NH", "New Hampshire" }, new[] { "NJ", "New Jersey" }, new[] { "NM", "New Mexico" }, new[] { "NY", "New York" }, new[] { "NC", "North Carolina" }, new[] { "ND", "North Dakota" }, new[] { "OH", "Ohio" }, new[] { "OK", "Oklahoma" }, new[] { "OR", "Oregon" }, new[] { "PA", "Pennsylvania" }, new[] { "RI", "Rhode Island" }, new[] { "SC", "South Carolina" }, new[] { "SD", "South Dakota" }, new[] { "TN", "Tennessee" }, new[] { "TX", "Texas" }, new[] { "UT", "Utah" }, new[] { "VT", "Vermont" }, new[] { "VA", "Virginia" }, new[] { "WA", "Washington" }, new[] { "WV", "West Virginia" }, new[] { "WI", "Wisconsin" }, new[] { "WY", "Wyoming" });
             SeedDepartments(context, new[] { "IT", "Information Technologies" }, new[] { "SALES", "Sales" }, new[] { "ACCT", "Accounting" }, new[] { "R&D", "Research and Development" }, new[] { "HR", "Human Resources" }, new[] { "SEC", "Security" }, new[] { "MARK", "Marketing" }, new[] { "FAC", "Facilities" }, new[] { "EXEC", "Executive" }, new[] { "WH", "Warehouse" });
             SeedPayrollDeductions(context, new[] { "YMCA Single Membership", "19.99" }, new[] { "YMCA Family Membership", "29.99" }, new[] { "Dependent Day Care", "89.99" }, new[] { "Employee Cell Phone", "49.99" }, new[] { "Public Transportation Pass", "49.99" });
+            SeedCompanyAssets(context, new[] { "Cell Phone", "Laptop", "Car", "Pager", "Wireless Router", "Printer", "Monitor", "IPad" });
             SeedEmployees(context);
         }
 
@@ -58,12 +59,22 @@ namespace EntityFrameworkExtraMile.Migrations
             }
         }
 
+        private void SeedCompanyAssets(HumanResourceContext context, IEnumerable<string> assets)
+        {
+            foreach (var item in assets)
+            {
+                context.CompanyAssets.AddOrUpdate(s => s.Name, new CompanyAsset { Name = item });
+                context.SaveChanges();
+            }
+        }
+
         private void SeedEmployees(HumanResourceContext context)
         {
             var employees = GetEmployeeData().Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             var states = context.States.ToArray();
             var departments = context.Departments.ToArray();
             var payrollDeductions = context.PayrollDeductions.ToArray();
+            var companyAssets = context.CompanyAssets.ToArray();
 
             foreach (var employee in employees)
             {
@@ -87,11 +98,27 @@ namespace EntityFrameworkExtraMile.Migrations
                         DateOfBirth = DateTime.Parse(fields[11]),
                         HireDate = DateTime.Parse(fields[12]),
                         Department = departments.ElementAt(Int32.Parse(fields[13])),
-                        PayrollDeductions = GetRandomPayrollDeductions(payrollDeductions)
+                        PayrollDeductions = GetRandomPayrollDeductions(payrollDeductions),
+                        CompanyAssets = GetRandomCompanyAssets(companyAssets)
                     });
 
                 context.SaveChanges();
             }
+        }
+
+        private ICollection<CompanyAsset> GetRandomCompanyAssets(IEnumerable<CompanyAsset> companyAssets)
+        {
+            var result = new List<CompanyAsset>();
+
+            foreach (var asset in companyAssets)
+            {
+                if ((_random.Next(1, 3) % 2 == 0))
+                {
+                    result.Add(asset);
+                }
+            }
+
+            return result;
         }
 
         private ICollection<PayrollDeduction> GetRandomPayrollDeductions(IEnumerable<PayrollDeduction> payrollDeductions)
@@ -100,7 +127,7 @@ namespace EntityFrameworkExtraMile.Migrations
 
             foreach (var deduction in payrollDeductions)
             {
-                if ((_random.Next(1, 3)%2 == 0))
+                if ((_random.Next(1, 3) % 2 == 0))
                 {
                     result.Add(deduction);
                 }

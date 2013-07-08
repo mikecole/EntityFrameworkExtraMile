@@ -16,6 +16,7 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess
         public DbSet<Department> Departments { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<PayrollDeduction> PayrollDeductions { get; set; }
+        public DbSet<CompanyAsset> CompanyAssets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,6 +27,8 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess
             modelBuilder.Configurations.Add(new StateConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());
             modelBuilder.Configurations.Add(new UserProfileConfiguration());
+            modelBuilder.Configurations.Add(new CompanyAssetConfiguration());
+            modelBuilder.Configurations.Add(new PayrollDeductionConfiguration());
         }
     }
 }

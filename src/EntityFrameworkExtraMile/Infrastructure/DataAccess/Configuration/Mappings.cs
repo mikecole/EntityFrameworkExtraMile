@@ -15,6 +15,7 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess.Configuration
 
             HasRequired(employee => employee.Address);
             HasMany(employee => employee.PayrollDeductions);
+            HasMany(employee => employee.CompanyAssets);
         }
     }
 
@@ -64,6 +65,17 @@ namespace EntityFrameworkExtraMile.Infrastructure.DataAccess.Configuration
             Property(deduction => deduction.Name).HasMaxLength(50).IsRequired();
 
             HasMany(deduction => deduction.Employees);
+        }
+    }
+
+    public class CompanyAssetConfiguration : EntityTypeConfiguration<CompanyAsset>
+    {
+        public CompanyAssetConfiguration()
+        {
+            HasKey(asset => asset.ID);
+            Property(asset => asset.Name).HasMaxLength(50).IsRequired();
+
+            HasMany(asset => asset.Employees);
         }
     }
 
