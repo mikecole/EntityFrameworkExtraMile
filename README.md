@@ -1,4 +1,4 @@
-Blog
+Entity Framework Extra Mile
 ====
 
-Blog
+Sample code for Entity Framework Extra Mile presentation.
